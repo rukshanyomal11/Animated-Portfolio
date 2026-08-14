@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #090e1a;
+  --text-color: #ffffff;
+  --glass-bg: rgba(10, 25, 47, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --dot-color: rgba(255, 255, 255, 0.05);
+  --grid-color: rgba(255, 255, 255, 0.02);
+  --nav-face-front-bg: rgba(0, 0, 0, 0.25);
+  --nav-face-front-text: #ffffff;
+  --nav-face-front-border: rgba(255, 255, 255, 0.08);
+  --sphere-bg: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.3) 100%);
+  --sphere-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(0, 0, 0, 0.5), inset 4px 4px 10px rgba(255, 255, 255, 0.4);
+  --sphere-border: rgba(255, 255, 255, 0.2);
+}
+
+html.light {
+  --bg-color: #f8fafc;
+  --text-color: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --dot-color: rgba(15, 23, 42, 0.05);
+  --grid-color: rgba(15, 23, 42, 0.02);
+  --nav-face-front-bg: rgba(0, 0, 0, 0.03);
+  --nav-face-front-text: #475569;
+  --nav-face-front-border: rgba(0, 0, 0, 0.06);
+  --sphere-bg: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(15, 23, 42, 0.15) 100%);
+  --sphere-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), inset -3px -3px 8px rgba(15, 23, 42, 0.15), inset 3px 3px 8px rgba(255, 255, 255, 0.9);
+  --sphere-border: rgba(15, 23, 42, 0.08);
+}
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  html:not(.light) {
+    background-image: linear-gradient(rgba(9, 14, 26, 0.9), rgba(9, 14, 26, 0.9)), url('./assets/beautiful-blue-003.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  
+  body {
+    overflow-x: hidden;
+    margin: 0;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 9999px;
+  border: 2px solid var(--bg-color);
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Glassmorphism & Neon Shadows */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel-glow {
+  box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.15), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+html.light .glass-panel-glow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Grid & Dots Backgrounds */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  transition: background-image 0.3s ease;
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  transition: background-image 0.3s ease;
+}
+
+.bg-slate-950 {
+  background-color: transparent !important;
+}
+html.light .bg-slate-950 {
+  background-color: var(--bg-color) !important;
+}
+html.light .bg-slate-950\/95,
+html.light [class~="bg-slate-950/95"] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+html.light .bg-slate-950\/90,
+html.light [class~="bg-slate-950/90"] {
+  background-color: rgba(248, 250, 252, 0.9) !important;
+}
+html.light .bg-slate-950\/80,
+html.light [class~="bg-slate-950/80"] {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+}
+html.light .bg-slate-950\/70,
+html.light [class~="bg-slate-950/70"] {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06) !important;
+}
+html.light .bg-slate-900,
+html.light [class~="bg-slate-900"] {
+  background-color: #f1f5f9 !important;
+}
+html.light .bg-slate-900\/60,
+html.light [class~="bg-slate-900/60"] {
+  background-color: rgba(241, 245, 249, 0.6) !important;
+}
+html.light .bg-slate-950\/40,
+html.light [class~="bg-slate-950/40"] {
+  background-color: rgba(226, 232, 240, 0.4) !important;
+}
+html.light .bg-white\/5,
+html.light [class~="bg-white/5"] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+html.light .border-white\/5,
+html.light [class~="border-white/5"] {
+  border-color: rgba(15, 23, 42, 0.06) !important;
+}
+html.light .border-white\/10,
+html.light [class~="border-white/10"] {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+html.light .border-white\/15,
+html.light [class~="border-white/15"] {
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+html.light .border-white\/20,
+html.light [class~="border-white/20"] {
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+html.light .text-white,
+html.light [class~="text-white"] {
+  color: #0f172a !important;
+}
+html.light .text-gray-100,
+html.light [class~="text-gray-100"] {
+  color: #0f172a !important;
+}
+html.light .text-gray-300,
+html.light [class~="text-gray-300"] {
+  color: #334155 !important;
+}
+html.light .text-gray-400,
+html.light [class~="text-gray-400"] {
+  color: #475569 !important;
+}
+html.light .text-gray-500,
+html.light [class~="text-gray-500"] {
+  color: #64748b !important;
+}
+html.light .text-indigo-300,
+html.light [class~="text-indigo-300"] {
+  color: #4f46e5 !important;
+}
+html.light .text-violet-300,
+html.light [class~="text-violet-300"] {
+  color: #6d28d9 !important;
+}
+html.light .text-cyan-300,
+html.light [class~="text-cyan-300"] {
+  color: #0891b2 !important;
+}
+html.light .text-slate-950,
+html.light [class~="text-slate-950"] {
+  color: #f8fafc !important;
+}
+html.light .text-indigo-400,
+html.light [class~="text-indigo-400"] {
+  color: #4f46e5 !important;
+}
+html.light .text-violet-400,
+html.light [class~="text-violet-400"] {
+  color: #7c3aed !important;
+}
+html.light .text-purple-400,
+html.light [class~="text-purple-400"] {
+  color: #7c3aed !important;
+}
+html.light .text-amber-300,
+html.light [class~="text-amber-300"] {
+  color: #b45309 !important;
+}
+html.light .text-emerald-400,
+html.light [class~="text-emerald-400"] {
+  color: #059669 !important;
+}
+html.light .bg-slate-950\/50,
+html.light [class~="bg-slate-950/50"] {
+  background-color: rgba(241, 245, 249, 0.5) !important;
+}
+
+/* Skill card front background override */
+html.light .skill-flip-front {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Hardcoded Dark Background Overrides for Light Theme */
+html.light [class~="bg-[#080d16]/75"] {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+html.light [class~="bg-[#0b101b]/40"] {
+  background-color: rgba(15, 23, 42, 0.03) !important;
+}
+html.light [class~="bg-[#0b0f19]/80"] {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+html.light .bg-\[\#070b13\] {
+  background-color: #f1f5f9 !important;
+}
+html.light .bg-\[\#080d16\],
+html.light [class~="bg-[#080d16]"] {
+  background-color: #f8fafc !important;
+}
+html.light .bg-\[\#090e18\],
+html.light [class~="bg-[#090e18]"] {
+  background-color: #e2e8f0 !important;
+}
+html.light .bg-\[\#0d1117\],
+html.light [class~="bg-[#0d1117]"] {
+  background-color: #ffffff !important;
+}
+html.light .bg-\[\#111827\],
+html.light [class~="bg-[#111827]"] {
+  background-color: #f8fafc !important;
+}
+html.light .bg-\[\#070b13\]\/60,
+html.light [class~="bg-[#070b13]/60"] {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+}
+html.light .bg-\[\#0b0f19\]\/70,
+html.light [class~="bg-[#0b0f19]/70"] {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Inline Background Opacity overrides */
+html.light [class~="bg-slate-950/60"] {
+  background-color: rgba(248, 250, 252, 0.6) !important;
+}
+html.light [class~="bg-slate-950/40"] {
+  background-color: rgba(241, 245, 249, 0.4) !important;
+}
+html.light [class~="bg-slate-950/30"] {
+  background-color: rgba(241, 245, 249, 0.3) !important;
+}
+
+/* Additional Border Overrides for Light Theme */
+html.light [class~="border-white/15"] {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+html.light [class~="border-white/20"] {
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+html.light [class~="border-white/8"] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Project Cards Light Mode Opacity Tags and Buttons */
+html.light .text-white\/35,
+html.light [class~="text-white/35"] {
+  color: rgba(15, 23, 42, 0.35) !important;
+}
+html.light .text-white\/55,
+html.light [class~="text-white/55"] {
+  color: rgba(15, 23, 42, 0.55) !important;
+}
+html.light .text-white\/60,
+html.light [class~="text-white/60"] {
+  color: rgba(15, 23, 42, 0.65) !important;
+}
+html.light .text-white\/65,
+html.light [class~="text-white/65"] {
+  color: rgba(15, 23, 42, 0.7) !important;
+}
+html.light .text-white\/70,
+html.light [class~="text-white/70"] {
+  color: rgba(15, 23, 42, 0.75) !important;
+}
+html.light .text-white\/80,
+html.light [class~="text-white/80"] {
+  color: rgba(15, 23, 42, 0.85) !important;
+}
+html.light .bg-white\/7,
+html.light [class~="bg-white/7"] {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+}
+html.light .bg-white\/8,
+html.light [class~="bg-white/8"] {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+html.light .bg-white\/15,
+html.light [class~="bg-white/15"] {
+  background-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Light Theme Text Opacities (e.g. inactive timeline years, details) */
+html.light .text-white\/10,
+html.light [class~="text-white/10"] {
+  color: rgba(15, 23, 42, 0.1) !important;
+}
+html.light .text-white\/20,
+html.light [class~="text-white/20"] {
+  color: rgba(15, 23, 42, 0.2) !important;
+}
+html.light .text-white\/30,
+html.light [class~="text-white/30"] {
+  color: rgba(15, 23, 42, 0.3) !important;
+}
+html.light .text-white\/40,
+html.light [class~="text-white/40"] {
+  color: rgba(15, 23, 42, 0.4) !important;
+}
+html.light .text-white\/50,
+html.light [class~="text-white/50"] {
+  color: rgba(15, 23, 42, 0.5) !important;
+}
+
+/* Input Forms Focus, Text & Placeholder Overrides */
+html.light input,
+html.light textarea,
+html.light select {
+  color: #0f172a !important;
+}
+html.light .bg-white\/\[0\.08\],
+html.light [class~="bg-white/[0.08]"] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+html.light .focus\:bg-white\/\[0\.08\]:focus,
+html.light [class~="focus:bg-white/[0.08]"]:focus {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+html.light .placeholder-white\/20::placeholder,
+html.light [class~="placeholder-white/20"]::placeholder {
+  color: rgba(15, 23, 42, 0.4) !important;
+  opacity: 1 !important;
+}
+
+/* Additional slate background opacities */
+html.light .bg-slate-950\/80,
+html.light [class~="bg-slate-950/80"] {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+}
+
+/* Button & Link Hover Overrides in Light Mode */
+html.light .hover\:bg-white\/10:hover,
+html.light [class~="hover:bg-white/10"]:hover {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+html.light .hover\:border-white\/20:hover,
+html.light [class~="hover:border-white/20"]:hover {
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+html.light .hover\:bg-white\/5:hover,
+html.light [class~="hover:bg-white/5"]:hover {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+html.light .hover\:text-white:hover,
+html.light [class~="hover:text-white"]:hover {
+  color: #0f172a !important;
+}
+html.light .hover\:border-white\/10:hover,
+html.light [class~="hover:border-white/10"]:hover {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Inline style overrides for Project Section (Close button, dots, secondary links) */
+html.light #projects button[style*="rgba(255,255,255,0.08)"] {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: rgba(15, 23, 42, 0.75) !important;
+}
+html.light #projects button[style*="rgba(255,255,255,0.2)"] {
+  background-color: rgba(15, 23, 42, 0.2) !important;
+}
+html.light #projects a[style*="rgba(255,255,255,0.07)"] {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: rgba(15, 23, 42, 0.75) !important;
+}
+
+/* Footer brand name text gradient override in Light Mode */
+html.light footer span.text-transparent {
+  background-image: linear-gradient(to right, #0f172a, #4f46e5) !important;
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
